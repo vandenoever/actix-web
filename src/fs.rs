@@ -754,6 +754,11 @@ impl<C: StaticFileConfig> StaticFiles<C> {
         if path.is_dir() {
             if let Some(redir_index) = C::index_file() {
                 path.push(redir_index);
+                if C::show_index() && !path.exists() {
+                    path.pop();
+                    let dir = Directory::new(self.directory.clone(), path);
+                    return Ok(C::directory_listing(&dir, &req)?.into())
+                }
             } else if C::show_index() {
                 let dir = Directory::new(self.directory.clone(), path);
                 return Ok(C::directory_listing(&dir, &req)?.into())
@@ -1304,7 +1309,7 @@ mod tests {
         let mut srv = test::TestServer::with_factory(|| {
             App::new().handler(
                 "/",
-                StaticFiles::new(".").unwrap().index_file("Cargo.toml"),
+                StaticFiles::new(".").unwrap(),
             )
         });
         let request = srv
