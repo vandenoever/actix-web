@@ -316,7 +316,7 @@ mod tests {
     fn test_get_param_by_name() {
         let mut params = Params::new();
         params.add_static("item1", "path");
-        params.add_static("item2", "http%3A%2F%2Flocalhost%3A80%2Ffoo");
+        params.add_static("item2", "http%3A%2F%2Flocalhost%3A80%2Ffoo%20");
 
         assert_eq!(params.get("item0"), None);
         assert_eq!(params.get_decoded("item0"), None);
@@ -324,11 +324,11 @@ mod tests {
         assert_eq!(params.get_decoded("item1"), Some("path".to_string()));
         assert_eq!(
             params.get("item2"),
-            Some("http%3A%2F%2Flocalhost%3A80%2Ffoo")
+            Some("http%3A%2F%2Flocalhost%3A80%2Ffoo%20")
         );
         assert_eq!(
             params.get_decoded("item2"),
-            Some("http://localhost:80/foo".to_string())
+            Some("http://localhost:80/foo%20".to_string())
         );
     }
 }

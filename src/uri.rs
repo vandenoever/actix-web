@@ -2,7 +2,7 @@ use http::Uri;
 use std::rc::Rc;
 
 // https://tools.ietf.org/html/rfc3986#section-2.2
-const RESERVED_PLUS_EXTRA: &[u8] = b":/?#[]@!$&'()*,+?;=%^ <>\"\\`{}|";
+const RESERVED_PLUS_EXTRA: &[u8] = b":/?#[]@!$&'()*,+?;=%^<>\"\\`{}|";
 
 // https://tools.ietf.org/html/rfc3986#section-2.3
 const UNRESERVED: &[u8] =
