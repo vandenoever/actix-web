@@ -6,7 +6,7 @@ const RESERVED_PLUS_EXTRA: &[u8] = b":/?#[]@!$&'()*,+?;=%^<>\"\\`{}|";
 
 // https://tools.ietf.org/html/rfc3986#section-2.3
 const UNRESERVED: &[u8] =
-    b"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890-._~";
+    b" abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890-._~";
 
 #[inline]
 fn bit_at(array: &[u8], ch: u8) -> bool {
